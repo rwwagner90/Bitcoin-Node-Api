@@ -1,6 +1,6 @@
-# bitcoin-node-api
+# megacoin-node-api
 
-Bitcoin-Node-Api is an Express middleware plugin that easily exposes a URL structure for interfacing with a bitcoind Bitcoin wallet.
+Megacoin-Node-Api is an Express middleware plugin that easily exposes a URL structure for interfacing with a megacoind Megacoin wallet.
 
 NB: The middleware is experimental at present. Certain JSON-RPC methods are not supported yet and/or experimental. These are methods with more complex parameters that do not fit easily into a query string:
 
@@ -26,7 +26,7 @@ npm install bitcoin-node-api
 ### Node.js
 
 ```javascript
-var bitcoinapi = require('bitcoin-node-api');
+var megacoinapi = require('megacoin-node-api');
 var express = require('express');
 var app = express();
 
@@ -34,14 +34,14 @@ var app = express();
 
 var wallet = {
   host: 'localhost',
-  port: 8332,
+  port: 7950,
   user: 'username',
   pass: 'password'
 };
 
-bitcoinapi.setWalletDetails(wallet);
-bitcoinapi.setAccess('default-safe'); //Access control
-app.use('/bitcoin/api', bitcoinapi.app); //Bind the middleware to any chosen url
+megacoinapi.setWalletDetails(wallet);
+megacoinapi.setAccess('default-safe'); //Access control
+app.use('/megacoin/api', megacoinapi.app); //Bind the middleware to any chosen url
 
 app.listen(3000);
 ```
@@ -54,7 +54,7 @@ Just add the method name after the binded url.
 
 For example:
 
-* http://localhost:5000/bitcoin/api/getinfo
+* http://localhost:5000/megacoin/api/getinfo
 
 This returns data exactly as would be expected from the JSON-RPC api.
 
@@ -80,7 +80,7 @@ This returns data exactly as would be expected from the JSON-RPC api.
 
 Parameters are sent via a query string:
 
-* http://localhost:3000/bitcoin/api/gettransaction?txid=d6c7e35ff9c9623208c22ee37a118ad523ae6c2d137d10053739cb03dbac62e0
+* http://localhost:3000/megacoin/api/gettransaction?txid=d6c7e35ff9c9623208c22ee37a118ad523ae6c2d137d10053739cb03dbac62e0
 
 ```javascript
 {
@@ -112,9 +112,9 @@ Consult the [API call list](https://en.bitcoin.it/wiki/Original_Bitcoin_client/A
 
 If you have encrypted your wallet.dat you need to set the passphrase before attaching the middleware.
 ```javascript
-bitcoinapi.setWalletDetails(wallet);
-bitcoinapi.setWalletPassphrase(passphrase);
-app.use('/bitcoin/api', bitcoinapi.app);
+megacoinapi.setWalletDetails(wallet);
+megacoinapi.setWalletPassphrase(passphrase);
+app.use('/megacoin/api', megacoinapi.app);
 ```
 
 ### .setAccces(type, accesslist);
@@ -127,7 +127,7 @@ The 'only' type only exposes the methods given by an array of methods as the acc
 
 ```javascript
 //Only allow the getinfo method
-bitcoinapi.setAccess('only', ['getinfo']);
+megacoinapi.setAccess('only', ['getinfo']);
 ```
 
 #### 'restrict'
@@ -135,19 +135,19 @@ bitcoinapi.setAccess('only', ['getinfo']);
 The 'restrict' type prevents methods from being accessed.
 
 ```javascript
-bitcoinapi.setAccess('restrict', ['dumpprivkey', 'sendmany']);
+megacoinapi.setAccess('restrict', ['dumpprivkey', 'sendmany']);
 ```
 
 ### Access Profiles
 
-Bitcoin-Node-Api has predefined access profiles to make it easy to set up.
+Megacoin-Node-Api has predefined access profiles to make it easy to set up.
 
 #### 'default-safe'
 
 It prevents 'dumpprivkey' and 'walletpassphrasechange' being accessed. This prevents potential theft. Also removes the 'stop' command to prevent someone from stopping the server.
 
 ```javascript
-bitcoinapi.setAccess('default-safe');
+megacoinapi.setAccess('default-safe');
 ```
 
 #### 'read-only'
@@ -155,16 +155,16 @@ bitcoinapi.setAccess('default-safe');
 This profile only exposes methods that show information. No methods that can send/alter the wallet are exposed.
 
 ```javascript
-bitcoinapi.setAccess('read-only');
+megacoinapi.setAccess('read-only');
 ```
 
 ## Projects
 
-Bitcoin-Node-Api is used in the following projects:
+Megacoin-Node-Api is used in the following projects:
 
-* [Min.io](http://min.io)
+* [cryptosino.com](http://cryptosino.com)
 
-If you use Bitcoin-Node-Api in your projects submit a pull request to the readme with a link or send me an email: niel@delarouviere.com
+If you use Megacoin-Node-Api in your projects submit a pull request to the readme with a link.
 
 # Licence
 
