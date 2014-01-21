@@ -18,7 +18,7 @@ These methods will be added in the future. If there any other problems with the 
 ## Install
 
 ```javascript
-npm install bitcoin-node-api
+npm install megacoin-node-api
 ```
 
 ## How to use
@@ -30,7 +30,7 @@ var megacoinapi = require('megacoin-node-api');
 var express = require('express');
 var app = express();
 
-//Username and password relate to those set in the bitcoin.conf file
+//Username and password relate to those set in the megacoin.conf file
 
 var wallet = {
   host: 'localhost',
@@ -60,20 +60,19 @@ This returns data exactly as would be expected from the JSON-RPC api.
 
 ```javascript
 {
-  "version": 80300,
+  "version": 179600,
   "protocolversion": 70001,
   "walletversion": 60000,
-  "balance": 4.3222,
-  "blocks": 245645,
+  "balance": 0,
+  "blocks": 137870,
   "timeoffset": -2,
-  "connections": 8,
+  "connections": 15,
   "proxy": "",
-  "difficulty": 21335329.113983,
+  "difficulty": 38.29464371,
   "testnet": false,
-  "keypoololdest": 1368414896,
+  "keypoololdest": 1388773377,
   "keypoolsize": 101,
-  "paytxfee": 0.0001,
-  "unlocked_until": 0,
+  "paytxfee": 0,
   "errors": ""
 }
 ```
